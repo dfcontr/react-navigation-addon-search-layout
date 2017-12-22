@@ -47,11 +47,7 @@ export default class SearchBar extends React.PureComponent {
               style={{ padding: 5 }}
               background={Touchable.Ripple(this.props.tintColor, true)}
             >
-              <Icon.Ionicons
-                name="md-close"
-                size={25}
-                color={this.props.tintColor}
-              />
+              {this.props.closeIcon}
             </Touchable>
           ) : null}
         </View>

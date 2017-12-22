@@ -51,6 +51,8 @@ export default class SearchLayout extends React.Component {
               this.props.searchInputTintColor || this.props.headerTintColor
             }
             onCancelPress={() => this.props.onCancelPress()}
+            searchIcon={this.props.searchIcon}
+            closeIcon={this.props.closeIcon}
           />
         </Header>
 

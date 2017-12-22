@@ -8,14 +8,14 @@ import {
   TextInput,
   TouchableOpacity,
   TouchableWithoutFeedback,
-  View,
+  View
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
 
 const Layout = {
   window: {
-    width: Dimensions.get('window').width,
-  },
+    width: Dimensions.get('window').width
+  }
 };
 const SearchContainerHorizontalMargin = 10;
 const SearchContainerWidth =
@@ -33,7 +33,8 @@ class PlaceholderButtonSearchBar extends React.PureComponent {
       <View style={styles.container}>
         <TouchableWithoutFeedback
           hitSlop={{ top: 10, left: 10, bottom: 5, right: 10 }}
-          onPress={this._handlePress}>
+          onPress={this._handlePress}
+        >
           <View style={styles.searchContainer}>
             <TextInput
               editable={false}
@@ -59,7 +60,7 @@ export default class SearchBar extends React.PureComponent {
   state = {
     text: '',
     showCancelButton: false,
-    inputWidth: SearchContainerWidth,
+    inputWidth: SearchContainerWidth
   };
 
   _textInput: TextInput;
@@ -82,18 +83,18 @@ export default class SearchBar extends React.PureComponent {
         duration: 200,
         create: {
           type: LayoutAnimation.Types.linear,
-          property: LayoutAnimation.Properties.opacity,
+          property: LayoutAnimation.Properties.opacity
         },
         update: {
           type: LayoutAnimation.Types.spring,
           springDamping: 0.9,
-          initialVelocity: 10,
-        },
+          initialVelocity: 10
+        }
       });
 
       this.setState({
         showCancelButton: true,
-        inputWidth: SearchContainerWidth - cancelButtonWidth,
+        inputWidth: SearchContainerWidth - cancelButtonWidth
       });
     });
   };
@@ -124,7 +125,9 @@ export default class SearchBar extends React.PureComponent {
             style={[styles.searchInput, searchInputStyle]}
           />
 
-          <SearchIcon />
+          <View style={styles.searchIconContainer}>
+            {this.props.searchIcon}
+          </View>
         </View>
 
         <View
@@ -135,18 +138,21 @@ export default class SearchBar extends React.PureComponent {
           }
           style={[
             styles.buttonContainer,
-            { opacity: showCancelButton ? 1 : 0 },
-          ]}>
+            { opacity: showCancelButton ? 1 : 0 }
+          ]}
+        >
           <TouchableOpacity
             style={styles.button}
             hitSlop={{ top: 15, bottom: 15, left: 15, right: 20 }}
             onLayout={this._handleLayoutCancelButton}
-            onPress={this._handlePressCancelButton}>
+            onPress={this._handlePressCancelButton}
+          >
             <Text
               style={{
                 fontSize: 17,
-                color: this.props.tintColor || '#007AFF',
-              }}>
+                color: this.props.tintColor || '#007AFF'
+              }}
+            >
               Cancel
             </Text>
           </TouchableOpacity>
@@ -174,7 +180,7 @@ export default class SearchBar extends React.PureComponent {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   buttonContainer: {
     position: 'absolute',
@@ -183,11 +189,11 @@ const styles = StyleSheet.create({
     paddingTop: 15,
     flexDirection: 'row',
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'center'
   },
   button: {
     paddingRight: 17,
-    paddingLeft: 2,
+    paddingLeft: 2
   },
   searchContainer: {
     height: 30,
@@ -196,17 +202,17 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     marginHorizontal: SearchContainerHorizontalMargin,
     marginTop: 10,
-    paddingLeft: 27,
+    paddingLeft: 27
   },
   searchIconContainer: {
     position: 'absolute',
     left: 7,
-    top: 6,
-    bottom: 0,
+    top: 8,
+    bottom: 0
   },
   searchInput: {
     flex: 1,
     fontSize: 14,
-    paddingTop: 1,
-  },
+    paddingTop: 1
+  }
 });
