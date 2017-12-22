@@ -12,9 +12,6 @@ import {
 } from 'react-native';
 import { withNavigation } from 'react-navigation';
 
-// TODO: remove dependency on Expo
-import { Icon } from 'expo';
-
 const Layout = {
   window: {
     width: Dimensions.get('window').width,
@@ -24,12 +21,12 @@ const SearchContainerHorizontalMargin = 10;
 const SearchContainerWidth =
   Layout.window.width - SearchContainerHorizontalMargin * 2;
 
-const SearchIcon = () =>
+const SearchIcon = () => (
   <View style={styles.searchIconContainer}>
-    <Icon.Ionicons name="ios-search" size={18} color="#ccc" />
-  </View>;
+    <Text>S</Text>
+  </View>
+);
 
-@withNavigation
 class PlaceholderButtonSearchBar extends React.PureComponent {
   render() {
     return (
@@ -58,7 +55,6 @@ class PlaceholderButtonSearchBar extends React.PureComponent {
   };
 }
 
-@withNavigation
 export default class SearchBar extends React.PureComponent {
   state = {
     text: '',
@@ -171,11 +167,7 @@ export default class SearchBar extends React.PureComponent {
   };
 
   _handlePressCancelButton = () => {
-    if (this.props.onCancelPress) {
-      this.props.onCancelPress(this.props.navigation.goBack);
-    } else {
-      this.props.navigation.goBack();
-    }
+    this.props.onCancelPress();
   };
 }
 
