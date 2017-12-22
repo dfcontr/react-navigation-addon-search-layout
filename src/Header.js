@@ -16,10 +16,6 @@ const TITLE_OFFSET = Platform.OS === 'ios' ? 70 : 56;
 export default class Header extends React.PureComponent {
   static HEIGHT = APPBAR_HEIGHT + STATUSBAR_HEIGHT + NOTCH_HEIGHT;
 
-  _navigateBack = () => {
-    this.props.navigation.goBack(null);
-  };
-
   _maybeRenderBackButton = () => {
     if (!this.props.backButton) {
       return;
@@ -27,7 +23,7 @@ export default class Header extends React.PureComponent {
 
     return (
       <HeaderBackButton
-        onPress={this._navigateBack}
+        onPress={() => this.props.goBack()}
         pressColorAndroid={this.props.tintColor || '#fff'}
         tintColor={this.props.tintColor}
         title={this.props.backButtonTitle || null}
@@ -60,7 +56,7 @@ let platformContainerStyles;
 if (Platform.OS === 'ios') {
   platformContainerStyles = {
     borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'rgba(0, 0, 0, .3)',
+    borderBottomColor: 'rgba(0, 0, 0, .3)'
   };
 } else {
   platformContainerStyles = {
@@ -68,9 +64,9 @@ if (Platform.OS === 'ios') {
     shadowOpacity: 0.1,
     shadowRadius: StyleSheet.hairlineWidth,
     shadowOffset: {
-      height: StyleSheet.hairlineWidth,
+      height: StyleSheet.hairlineWidth
     },
-    elevation: 4,
+    elevation: 4
   };
 }
 
@@ -79,18 +75,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     paddingTop: STATUSBAR_HEIGHT + NOTCH_HEIGHT,
     height: STATUSBAR_HEIGHT + APPBAR_HEIGHT + NOTCH_HEIGHT,
-    ...platformContainerStyles,
+    ...platformContainerStyles
   },
   appBar: {
-    flex: 1,
+    flex: 1
   },
   header: {
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   item: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'transparent',
+    backgroundColor: 'transparent'
   },
   title: {
     bottom: 0,
@@ -98,18 +94,18 @@ const styles = StyleSheet.create({
     right: TITLE_OFFSET,
     top: 0,
     position: 'absolute',
-    alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start',
+    alignItems: Platform.OS === 'ios' ? 'center' : 'flex-start'
   },
   left: {
     left: 0,
     bottom: 0,
     top: 0,
-    position: 'absolute',
+    position: 'absolute'
   },
   right: {
     right: 0,
     bottom: 0,
     top: 0,
-    position: 'absolute',
-  },
+    position: 'absolute'
+  }
 });

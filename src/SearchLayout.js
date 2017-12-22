@@ -11,11 +11,11 @@ export default class SearchLayout extends React.Component {
   static defaultProps = {
     debounce: 500,
     headerBackgroundColor: Platform.OS === 'ios' ? '#f7f7f7' : '#fff',
-    headerTintColor: '#000',
+    headerTintColor: '#000'
   };
 
   state = {
-    q: '',
+    q: ''
   };
 
   _handleSubmit = q => {
@@ -34,7 +34,9 @@ export default class SearchLayout extends React.Component {
         <Header
           backgroundColor={this.props.headerBackgroundColor}
           tintColor={this.props.headerTintColor}
-          backButton={Platform.OS === 'android'}>
+          backButton={Platform.OS === 'android'}
+          goBack={() => this.props.onCancelPress()}
+        >
           <SearchBar
             onChangeQuery={this._handleChangeQuery}
             onSubmit={this._handleSubmit}
@@ -62,6 +64,6 @@ export default class SearchLayout extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-  },
+    flex: 1
+  }
 });

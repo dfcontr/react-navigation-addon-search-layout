@@ -3,9 +3,6 @@ import { NativeModules, StyleSheet, TextInput, View } from 'react-native';
 import { withNavigation } from 'react-navigation';
 import Touchable from 'react-native-platform-touchable';
 
-import { Icon } from 'expo';
-
-@withNavigation
 export default class SearchBar extends React.PureComponent {
   componentDidMount() {
     requestAnimationFrame(() => {
@@ -14,7 +11,7 @@ export default class SearchBar extends React.PureComponent {
   }
 
   state = {
-    text: '',
+    text: ''
   };
 
   render() {
@@ -41,20 +38,22 @@ export default class SearchBar extends React.PureComponent {
           style={[styles.searchInput, searchInputStyle]}
         />
         <View
-          style={{ width: 50, alignItems: 'center', justifyContent: 'center' }}>
-          {this.state.text
-            ? <Touchable
-                onPress={this._handleClear}
-                hitSlop={{top: 15, left: 10, right: 15, bottom: 15}}
-                style={{ padding: 5 }}
-                background={Touchable.Ripple(this.props.tintColor, true)}>
-                <Icon.Ionicons
-                  name="md-close"
-                  size={25}
-                  color={this.props.tintColor}
-                />
-              </Touchable>
-            : null}
+          style={{ width: 50, alignItems: 'center', justifyContent: 'center' }}
+        >
+          {this.state.text ? (
+            <Touchable
+              onPress={this._handleClear}
+              hitSlop={{ top: 15, left: 10, right: 15, bottom: 15 }}
+              style={{ padding: 5 }}
+              background={Touchable.Ripple(this.props.tintColor, true)}
+            >
+              <Icon.Ionicons
+                name="md-close"
+                size={25}
+                color={this.props.tintColor}
+              />
+            </Touchable>
+          ) : null}
         </View>
       </View>
     );
@@ -78,13 +77,13 @@ export default class SearchBar extends React.PureComponent {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'row'
   },
   searchInput: {
     flex: 1,
     fontSize: 18,
     marginBottom: 2,
     paddingLeft: 5,
-    marginRight: 5,
-  },
+    marginRight: 5
+  }
 });
