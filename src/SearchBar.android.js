@@ -4,14 +4,25 @@ import { withNavigation } from 'react-navigation';
 import Touchable from 'react-native-platform-touchable';
 
 export default class SearchBar extends React.PureComponent {
+  state = {
+    text: ''
+  };
+
   componentDidMount() {
+    this.props.onRef(this);
     requestAnimationFrame(() => {
       this._textInput.focus();
     });
   }
 
-  state = {
-    text: ''
+  componentWillUnmount() {
+    this.props.onRef(undefined);
+  }
+
+  restartSearch = () => {
+    const text = '';
+    this.setState({ text });
+    this.props.onChangeQuery && this.props.onChangeQuery(text);
   };
 
   render() {

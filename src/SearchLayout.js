@@ -18,6 +18,18 @@ export default class SearchLayout extends React.Component {
     q: ''
   };
 
+  componentDidMount() {
+    this.props.onRef(this);
+  }
+
+  componentWillUnmount() {
+    this.props.onRef(undefined);
+  }
+
+  restartSearch = () => {
+    this.searchBar.restartSearch();
+  };
+
   _handleSubmit = q => {
     this.props.onSubmit && this.props.onSubmit(q);
   };
@@ -53,6 +65,7 @@ export default class SearchLayout extends React.Component {
             onCancelPress={() => this.props.onCancelPress()}
             searchIcon={this.props.searchIcon}
             closeIcon={this.props.closeIcon}
+            onRef={ref => (this.searchBar = ref)}
           />
         </Header>
 
