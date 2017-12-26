@@ -80,6 +80,7 @@ export default class SearchBar extends React.PureComponent {
     const text = '';
     this.setState({ text });
     this.props.onChangeQuery && this.props.onChangeQuery(text);
+    this._textInput.focus();
   };
 
   _handleLayoutCancelButton = (e: Object) => {
