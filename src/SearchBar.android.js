@@ -68,8 +68,11 @@ export default class SearchBar extends React.PureComponent {
   }
 
   _handleClear = () => {
-    this.setState({ text: '' });
+    const text = '';
+    this.setState({ text });
+    this.props.onChangeQuery && this.props.onChangeQuery(text);
   };
+
   _handleChangeText = text => {
     this.setState({ text });
     this.props.onChangeQuery && this.props.onChangeQuery(text);
