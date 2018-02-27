@@ -68,7 +68,9 @@ export default class SearchBar extends React.PureComponent {
   componentDidMount() {
     this.props.onRef(this);
     requestAnimationFrame(() => {
-      this._textInput.focus();
+      if (this._textInput) {
+        this._textInput.focus();
+      }
     });
   }
 
