@@ -66,7 +66,7 @@ if (Platform.OS === 'ios') {
     shadowOffset: {
       height: StyleSheet.hairlineWidth
     },
-    elevation: 4
+    elevation: 1
   };
 }
 
