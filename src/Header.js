@@ -33,6 +33,17 @@ export default class Header extends React.PureComponent {
     );
   };
 
+  getContainerStyles = () => {
+    const { showBorder, borderColor } = this.props;
+    const platformContainerStyles = {
+      borderBottomWidth: showBorder ? 1 : 0,
+      borderBottomColor: borderColor,
+      elevation: showBorder ? 1 : 0
+    };
+
+    return platformContainerStyles;
+  };
+
   render() {
     let headerStyle = {};
     if (this.props.backgroundColor) {
@@ -40,7 +51,9 @@ export default class Header extends React.PureComponent {
     }
 
     return (
-      <Animated.View style={[styles.container, headerStyle]}>
+      <Animated.View
+        style={[styles.container, this.getContainerStyles(), headerStyle]}
+      >
         <View style={styles.appBar}>
           <View style={[StyleSheet.absoluteFill, styles.header]}>
             {this._maybeRenderBackButton()}
@@ -52,30 +65,11 @@ export default class Header extends React.PureComponent {
   }
 }
 
-let platformContainerStyles;
-if (Platform.OS === 'ios') {
-  platformContainerStyles = {
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: 'rgba(0, 0, 0, .3)'
-  };
-} else {
-  platformContainerStyles = {
-    shadowColor: 'black',
-    shadowOpacity: 0.1,
-    shadowRadius: StyleSheet.hairlineWidth,
-    shadowOffset: {
-      height: StyleSheet.hairlineWidth
-    },
-    elevation: 1
-  };
-}
-
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
     paddingTop: STATUSBAR_HEIGHT + NOTCH_HEIGHT,
-    height: STATUSBAR_HEIGHT + APPBAR_HEIGHT + NOTCH_HEIGHT,
-    ...platformContainerStyles
+    height: STATUSBAR_HEIGHT + APPBAR_HEIGHT + NOTCH_HEIGHT
   },
   appBar: {
     flex: 1

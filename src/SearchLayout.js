@@ -48,6 +48,8 @@ export default class SearchLayout extends React.Component {
           tintColor={this.props.headerTintColor}
           backButton={Platform.OS === 'android'}
           goBack={() => this.props.onCancelPress()}
+          showBorder={this.props.showBorder}
+          borderColor={this.props.borderColor}
         >
           <SearchBar
             onChangeQuery={this._handleChangeQuery}
